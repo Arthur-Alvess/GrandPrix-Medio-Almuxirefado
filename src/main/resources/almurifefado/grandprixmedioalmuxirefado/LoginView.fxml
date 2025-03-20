@@ -9,9 +9,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1980.0" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="almurifefado.grandprixmedioalmuxirefado.Controllers.LoginController" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="almurifefado.grandprixmedioalmuxirefado.Controllers.LoginController">
    <children>
-      <ImageView fx:id="imageTeste" fitHeight="1010.0" fitWidth="822.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageTeste" fitHeight="1010.0" fitWidth="822.0" layoutX="-11.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
       <PasswordField layoutX="1222.0" layoutY="492.0" prefHeight="47.0" prefWidth="319.0" promptText="Digite sua senha" />
       <TextField layoutX="1222.0" layoutY="405.0" prefHeight="47.0" prefWidth="319.0" promptText="Digite seu email ou CPF" />
       <Label layoutX="1268.0" layoutY="127.0" prefHeight="106.0" prefWidth="228.0" text="LOGIN">
@@ -19,14 +19,14 @@
             <Font size="75.0" />
          </font>
       </Label>
-      <Button layoutX="1390.0" layoutY="593.0" mnemonicParsing="false" onAction="#onHelloButtonClick" prefHeight="47.0" prefWidth="150.0" text="CADASTRO" />
+      <Button fx:id="btnCadastro" layoutX="1390.0" layoutY="593.0" mnemonicParsing="false" onAction="#onClickBtnCadastro" prefHeight="47.0" prefWidth="150.0" text="CADASTRO" />
       <Button layoutX="1224.0" layoutY="593.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="150.0" text="ENTRAR" />
       <Label layoutX="1224.0" layoutY="388.0" prefHeight="17.0" prefWidth="75.0" text="EMAIL/CPF" />
       <Label layoutX="1224.0" layoutY="475.0" prefHeight="17.0" prefWidth="75.0" text="SENHA" />
-      <Line endX="484.29290771484375" endY="686.0" layoutX="329.0" layoutY="325.0" startX="-329.0" startY="-324.0" strokeWidth="3.0" />
-      <Line fx:id="Line1" endX="516.2684936523438" endY="626.7542114257812" layoutX="339.0" layoutY="335.0" rotate="-100.0" startX="-323.8711242675781" startY="-305.511474609375" strokeWidth="3.0" />
-      <Line endX="215.99993896484375" endY="717.7070922851562" layoutX="598.0" layoutY="294.0" startX="223.99993896484375" startY="-293.0" strokeWidth="3.0" />
-      <Label fx:id="LabelMessage" layoutX="1240.0" layoutY="276.0" prefHeight="75.0" prefWidth="284.0" text="Bem Vindo ao nosso sistema!">
+      <Line endX="484.0" endY="747.75732421875" layoutX="329.0" layoutY="325.0" startX="-329.0" startY="-324.0" strokeWidth="3.0" />
+      <Line fx:id="Line1" endX="-339.0" endY="745.0" layoutX="339.0" layoutY="335.0" startX="476.41424560546875" startY="-336.1213073730469" strokeWidth="3.0" />
+      <Line endX="224.0" endY="757.0" layoutX="593.0" layoutY="323.0" startX="222.4141845703125" startY="-324.1213073730469" strokeWidth="3.0" />
+      <Label fx:id="LabelMessage" alignment="CENTER" layoutX="1240.0" layoutY="263.0" prefHeight="86.0" prefWidth="284.0" text="Bem Vindo ao nosso sistema!" textAlignment="CENTER">
          <font>
             <Font size="17.0" />
          </font>

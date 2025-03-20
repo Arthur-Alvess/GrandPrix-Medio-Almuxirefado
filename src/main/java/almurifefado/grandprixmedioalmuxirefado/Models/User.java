@@ -9,13 +9,15 @@ public class User {
     private EmailAddress email;
     private CPF cpf;
     private CellphoneNumber cellphone;
+    private String senha;
 
 
-    public User(String nomeCompleto, EmailAddress email, CPF cpf, CellphoneNumber cellphone){
+    public User(String nomeCompleto, EmailAddress email, CPF cpf, CellphoneNumber cellphone, String senha){
         this.nomeCompleto = nomeCompleto;
         this.email = email;
         this.cpf = cpf;
         this.cellphone = cellphone;
+        this.senha = senha;
     }
 
     @Override
