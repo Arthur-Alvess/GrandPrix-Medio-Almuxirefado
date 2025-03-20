@@ -1,15 +1,13 @@
 package almurifefado.grandprixmedioalmuxirefado.Util;
 
-import almurifefado.grandprixmedioalmuxirefado.Util.Cep;
-
-public class UserAddress {
+public class Address {
     private String rua;
     private String numero;
     private String bairro;
     private String cidade;
     private Cep cep;
 
-    public UserAddress(String rua, String numero, String bairro, String cidade, Cep cep) {
+    public Address(String rua, String numero, String bairro, String cidade, Cep cep) {
         this.rua = rua;
         this.numero = numero;
         this.bairro = bairro;
