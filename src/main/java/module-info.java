@@ -13,4 +13,6 @@ module almurifefado.grandprixmedioalmuxirefado {
 
     opens almurifefado.grandprixmedioalmuxirefado to javafx.fxml;
     exports almurifefado.grandprixmedioalmuxirefado;
+    exports almurifefado.grandprixmedioalmuxirefado.Controllers;
+    opens almurifefado.grandprixmedioalmuxirefado.Controllers to javafx.fxml;
 }

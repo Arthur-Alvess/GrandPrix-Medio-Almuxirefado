@@ -1,4 +1,4 @@
-package almurifefado.grandprixmedioalmuxirefado;
+package almurifefado.grandprixmedioalmuxirefado.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
