@@ -9,11 +9,12 @@ import javafx.scene.image.Image;
 
 public class LoginController {
     @FXML
-    private Label welcomeText;
+    private Label LabelMessage;
 
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+        LabelMessage.setText("Cala boca mininin");
+        LabelMessage.setStyle("-fx-text-fill: red;");
     }
 
 }

@@ -20,6 +20,11 @@ public class Funcionário {
         this.cpf = cpf;
         this.idade = idade;
         this.descrição = descrição;
-        this.statusAtualFuncionario = statusAtualFuncionario;
+        this.statusAtualFuncionario = StatusAtualFuncionario.ATIVO;
+    }
+
+    @Override
+    public String toString(){
+        return "Nome: " + this.nome + "Email: " + this.email + "CPF: " + this.cpf + "Idade: " + this.idade + "Status: " + this.statusAtualFuncionario;
     }
 }
