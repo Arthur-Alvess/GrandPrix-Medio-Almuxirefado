@@ -3,8 +3,9 @@ package almurifefado.grandprixmedioalmuxirefado.ConsoleApplication;
 import almurifefado.grandprixmedioalmuxirefado.Models.*;
 import almurifefado.grandprixmedioalmuxirefado.Storage.*;
 import almurifefado.grandprixmedioalmuxirefado.Util.*;
-
+import java.io.IOException;
 import java.util.Scanner;
+
 
 public class Main {
     private static UserContas userContas = new UserContas();
@@ -16,12 +17,13 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("1. Cadastro");
+            System.out.println("\n1. Cadastro");
             System.out.println("2. Login");
             System.out.println("3. Sair");
             System.out.print("Escolha uma opção: ");
             int opcao = scanner.nextInt();
             scanner.nextLine();
+            limparConsole();
 
             switch (opcao) {
                 case 1:
@@ -34,12 +36,14 @@ public class Main {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("\nOpção inválida.");
             }
         }
     }
 
     private static void cadastrarUsuario(Scanner scanner) {
+        limparConsole();
+        System.out.println("\nVocê está na area de cadastro\n");
         System.out.print("Nome completo: ");
         String nome = scanner.nextLine();
         System.out.print("Email: ");
@@ -53,10 +57,16 @@ public class Main {
 
         User user = new User(nome, new EmailAddress(email), new CPF(cpf), new CellphoneNumber(celular), senha);
         userContas.adicionarUsuario(user);
-        System.out.println("Usuário cadastrado com sucesso!");
+        System.out.println("\nUsuário cadastrado com sucesso!");
+
+        System.out.println("Pressione Enter para continuar...");
+        scanner.nextLine();
+        limparConsole();
     }
 
     private static void login(Scanner scanner) {
+        limparConsole();
+        System.out.println("\nVocê está na area de login\n");
         System.out.print("Email ou CPF: ");
         String emailCpf = scanner.nextLine();
         System.out.print("Senha: ");
@@ -64,16 +74,25 @@ public class Main {
 
         User user = userContas.autenticar(emailCpf, senha);
         if (user != null) {
-            System.out.println("Login bem-sucedido!");
+            System.out.println("\nLogin bem-sucedido!");
+
+            System.out.println("Pressione Enter para continuar...");
+            scanner.nextLine();
+            limparConsole();
             menuPrincipal(scanner, user);
         } else {
-            System.out.println("Credenciais inválidas.");
+            System.out.println("\nCredenciais inválidas.");
+            System.out.println("Pressione Enter para continuar...");
+            scanner.nextLine();
+            limparConsole();
         }
     }
 
     private static void menuPrincipal(Scanner scanner, User user) {
         while (true) {
-            System.out.println("1. Gerenciar Funcionários");
+            limparConsole();
+            System.out.println("\nMenu principal");
+            System.out.println("\n1. Gerenciar Funcionários");
             System.out.println("2. Gerenciar Estoque");
             System.out.println("3. Galeria de Itens");
             System.out.println("4. Histórico");
@@ -96,16 +115,23 @@ public class Main {
                     visualizarHistorico();
                     break;
                 case 5:
+                limparConsole();
                     return;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("\nOpção inválida.");
+
+                    System.out.println("Pressione Enter para continuar...");
+                    scanner.nextLine();
+                    limparConsole();
             }
         }
     }
 
     private static void gerenciarFuncionarios(Scanner scanner) {
         while (true) {
-            System.out.println("1. Cadastrar Funcionário");
+            limparConsole();
+            System.out.println("\nVocê esta na area de gerenciar funcionários");
+            System.out.println("\n1. Cadastrar Funcionário");
             System.out.println("2. Visualizar Funcionários");
             System.out.println("3. Desativar/Excluir Funcionário");
             System.out.println("4. Voltar");
@@ -126,12 +152,17 @@ public class Main {
                 case 4:
                     return;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("\nOpção inválida.");
+                    System.out.println("Pressione Enter para continuar...");
+                    scanner.nextLine();
+                    limparConsole();
             }
         }
     }
 
     private static void cadastrarFuncionario(Scanner scanner) {
+        limparConsole();
+        System.out.println("\nVoce está cadastrando um funcionário\n");
         System.out.print("Nome: ");
         String nome = scanner.nextLine();
         System.out.print("Email: ");
@@ -148,13 +179,19 @@ public class Main {
 
         Funcionário funcionario = new Funcionário(nome, new EmailAddress(email), new CPF(cpf), new CellphoneNumber(celular), idade, descricao, StatusAtualFuncionario.ATIVO);
         listaFuncionarios.adicionarFuncionario(funcionario);
-        System.out.println("Funcionário cadastrado com sucesso!");
+        System.out.println("\nFuncionário cadastrado com sucesso!");
+        System.out.println("Pressione Enter para continuar...");
+        scanner.nextLine();
+        limparConsole();
     }
 
     private static void visualizarFuncionarios() {
+        Scanner scanner = new Scanner(System.in);
         for (Funcionário funcionario : listaFuncionarios.getFuncionarios()) {
             System.out.println(funcionario);
         }
+        System.out.println("Pressione Enter para continuar...");
+        scanner.nextLine();
     }
 
     private static void desativarExcluirFuncionario(Scanner scanner) {
@@ -162,7 +199,7 @@ public class Main {
         String cpf = scanner.nextLine();
         Funcionário funcionario = listaFuncionarios.buscarFuncionario(cpf);
         if (funcionario != null) {
-            System.out.println("1. Desativar");
+            System.out.println("\n1. Desativar");
             System.out.println("2. Excluir");
             System.out.print("Escolha uma opção: ");
             int opcao = scanner.nextInt();
@@ -171,23 +208,41 @@ public class Main {
             switch (opcao) {
                 case 1:
                     funcionario.setStatus(StatusAtualFuncionario.INATIVO);
-                    System.out.println("Funcionário desativado.");
+                    System.out.println("\nFuncionário desativado.");
+
+                    System.out.println("Pressione Enter para continuar...");
+                    scanner.nextLine();
+                    limparConsole();
                     break;
                 case 2:
                     listaFuncionarios.removerFuncionario(funcionario);
-                    System.out.println("Funcionário excluído.");
+                    System.out.println("\nFuncionário excluído.");
+
+                    System.out.println("Pressione Enter para continuar...");
+                    scanner.nextLine();
+                    limparConsole();
                     break;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("\nOpção inválida.");
+
+                    System.out.println("Pressione Enter para continuar...");
+                    scanner.nextLine();
+                    limparConsole();
             }
         } else {
-            System.out.println("Funcionário não encontrado.");
+            System.out.println("\nFuncionário não encontrado.");
+
+            System.out.println("Pressione Enter para continuar...");
+            scanner.nextLine();
+            limparConsole();
         }
     }
 
     private static void gerenciarEstoque(Scanner scanner) {
         while (true) {
-            System.out.println("1. Adicionar Item");
+            limparConsole();
+            System.out.println("\nArea de gerenciar estoque");
+            System.out.println("\n1. Adicionar Item");
             System.out.println("2. Editar Item");
             System.out.println("3. Remover Item");
             System.out.println("4. Visualizar Estoque");
@@ -212,12 +267,18 @@ public class Main {
                 case 5:
                     return;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("\nOpção inválida.");
+
+                    System.out.println("Pressione Enter para continuar...");
+                    scanner.nextLine();
+                    limparConsole();
             }
         }
     }
 
     private static void adicionarItem(Scanner scanner) {
+        limparConsole();
+        System.out.println("\nVoce está adicionando um item\n");
         System.out.print("Código: ");
         String codigo = scanner.nextLine();
         System.out.print("Nome: ");
@@ -230,10 +291,16 @@ public class Main {
 
         Item item = new Item(nome,descricao, quantidade, codigo);
         estoque.adicionarItem(item);
-        System.out.println("Item adicionado com sucesso!");
+        System.out.println("\nItem adicionado com sucesso!");
+        
+        System.out.println("Pressione Enter para continuar...");
+        scanner.nextLine();
+        limparConsole();
     }
 
     private static void editarItem(Scanner scanner) {
+        limparConsole();
+        System.out.println("\nVoce está editando um item\n");
         System.out.print("Código do item: ");
         String codigo = scanner.nextLine();
         Item item = estoque.buscarItem(codigo);
@@ -249,9 +316,17 @@ public class Main {
             item.setNome(nome);
             item.setDescricao(descricao);
             item.setQuantidade(quantidade);
-            System.out.println("Item editado com sucesso!");
+            System.out.println("\nItem editado com sucesso!");
+
+            System.out.println("Pressione Enter para continuar...");
+            scanner.nextLine();
+            limparConsole();
         } else {
-            System.out.println("Item não encontrado.");
+            System.out.println("\nItem não encontrado.");
+
+            System.out.println("Pressione Enter para continuar...");
+            scanner.nextLine();
+            limparConsole();
         }
     }
 
@@ -261,21 +336,34 @@ public class Main {
         Item item = estoque.buscarItem(codigo);
         if (item != null) {
             estoque.removerItem(item);
-            System.out.println("Item removido com sucesso!");
+            System.out.println("\nItem removido com sucesso!");
+
+            System.out.println("Pressione Enter para continuar...");
+            scanner.nextLine();
+            limparConsole();
         } else {
-            System.out.println("Item não encontrado.");
+            System.out.println("\nItem não encontrado.");
+
+            System.out.println("Pressione Enter para continuar...");
+            scanner.nextLine();
+            limparConsole();
         }
     }
 
     private static void visualizarEstoque() {
+        Scanner scanner = new Scanner(System.in);
         for (Item item : estoque.getItens()) {
             System.out.println(item);
         }
+        System.out.println("Pressione Enter para continuar...");
+        scanner.nextLine();
     }
 
     private static void galeriaDeItens(Scanner scanner) {
         while (true) {
-            System.out.println("1. Retirar Item");
+            limparConsole();
+            System.out.println("\nArea de galeria de itens");
+            System.out.println("\n1. Retirar Item");
             System.out.println("2. Cancelar Retirada");
             System.out.println("3. Devolver Item");
             System.out.println("4. Voltar");
@@ -296,12 +384,18 @@ public class Main {
                 case 4:
                     return;
                 default:
-                    System.out.println("Opção inválida.");
+                    System.out.println("\nOpção inválida.");
+
+                    System.out.println("Pressione Enter para continuar...");
+                    scanner.nextLine();
+                    limparConsole();
             }
         }
     }
 
     private static void retirarItem(Scanner scanner) {
+        limparConsole();
+        System.out.println("\nRetirada de item\n");
         System.out.print("Código do item: ");
         String codigo = scanner.nextLine();
         Item item = estoque.buscarItem(codigo);
@@ -316,12 +410,24 @@ public class Main {
                 item.setQuantidade(item.getQuantidade() - quantidade);
                 carrinhoItens.adicionarItem(item, quantidade, nomeFuncionario);
                 historico.adicionarRegistro("Item retirado: " + item.getNome() + ", Quantidade: " + quantidade + ", Funcionário: " + nomeFuncionario);
-                System.out.println("Item retirado com sucesso!");
+                System.out.println("\nItem retirado com sucesso!");
+
+                System.out.println("Pressione Enter para continuar...");
+                scanner.nextLine();
+                limparConsole();
             } else {
-                System.out.println("Quantidade insuficiente em estoque.");
+                System.out.println("\nQuantidade insuficiente em estoque.");
+
+                System.out.println("Pressione Enter para continuar...");
+                scanner.nextLine();
+                limparConsole();
             }
         } else {
-            System.out.println("Item não encontrado.");
+            System.out.println("\nItem não encontrado.");
+
+            System.out.println("Pressione Enter para continuar...");
+            scanner.nextLine();
+            limparConsole();
         }
     }
 
@@ -337,13 +443,23 @@ public class Main {
             carrinhoItens.removerItem(item, quantidade);
             item.setQuantidade(item.getQuantidade() + quantidade);
             historico.adicionarRegistro("Retirada cancelada: " + item.getNome() + ", Quantidade: " + quantidade);
-            System.out.println("Retirada cancelada com sucesso!");
+            System.out.println("\nRetirada cancelada com sucesso!");
+
+            System.out.println("Pressione Enter para continuar...");
+            scanner.nextLine();
+            limparConsole();
         } else {
-            System.out.println("Item não encontrado no carrinho.");
+            System.out.println("\nItem não encontrado no carrinho.");
+
+            System.out.println("Pressione Enter para continuar...");
+            scanner.nextLine();
+            limparConsole();
         }
     }
 
     private static void devolverItem(Scanner scanner) {
+        limparConsole();
+        System.out.println("\n Devolver Item");
         System.out.print("Código do item: ");
         String codigo = scanner.nextLine();
         Item item = estoque.buscarItem(codigo);
@@ -356,15 +472,33 @@ public class Main {
 
             item.setQuantidade(item.getQuantidade() + quantidade);
             historico.adicionarRegistro("Item devolvido: " + item.getNome() + ", Quantidade: " + quantidade + ", Funcionário: " + nomeFuncionario);
-            System.out.println("Item devolvido com sucesso!");
+            System.out.println("\nItem devolvido com sucesso!");
+
+            System.out.println("Pressione Enter para continuar...");
+            scanner.nextLine();
+            limparConsole();
         } else {
-            System.out.println("Item não encontrado.");
+            System.out.println("\nItem não encontrado.");
+
+            System.out.println("Pressione Enter para continuar...");
+            scanner.nextLine();
+            limparConsole();
         }
     }
 
     private static void visualizarHistorico() {
+        Scanner scanner = new Scanner(System.in);
         for (String registro : historico.getRegistros()) {
             System.out.println(registro);
+        }
+        System.out.println("Pressione Enter para continuar...");
+        scanner.nextLine();
+    }
+    public static void limparConsole() {
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } catch (IOException | InterruptedException ex) {
+            System.out.println("Erro ao limpar o console.");
         }
     }
 }
