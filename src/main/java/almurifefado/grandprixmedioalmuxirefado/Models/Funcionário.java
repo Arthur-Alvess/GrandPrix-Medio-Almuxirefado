@@ -30,4 +30,13 @@ public class Funcionário {
     public String toString(){
         return "Nome: " + this.nome + ", Email: " + this.email + ", CPF: " + this.cpf + ", Celular: "+ this.celular + ", Idade: " + this.idade + ", Status: " + this.statusAtualFuncionario;
     }
+
+    public CPF getCpf() {
+        return cpf;
+    }
+
+    public void setStatus(StatusAtualFuncionario status) {
+        this.statusAtualFuncionario = status;
+    }
+
 }

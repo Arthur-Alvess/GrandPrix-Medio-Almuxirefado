@@ -24,4 +24,17 @@ public class User {
     public String toString(){
         return "Nome: " + this.nomeCompleto + ", Email: " + this.email + ", Cpf: " + this.cpf + ", " + this.cellphone;
     }
+    
+    public EmailAddress getEmail() {
+        return this.email;
+    }
+
+    public CPF getCpf() {
+        return this.cpf;
+    }
+
+    public String getSenha() {
+        return this.senha;
+    }
+    
 }
