@@ -10,9 +10,12 @@ module almurifefado.grandprixmedioalmuxirefado {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires com.google.gson;
 
     opens almurifefado.grandprixmedioalmuxirefado to javafx.fxml;
     exports almurifefado.grandprixmedioalmuxirefado;
     exports almurifefado.grandprixmedioalmuxirefado.Controllers;
     opens almurifefado.grandprixmedioalmuxirefado.Controllers to javafx.fxml;
+    opens almurifefado.grandprixmedioalmuxirefado.Models to com.google.gson;
+    opens almurifefado.grandprixmedioalmuxirefado.Util to com.google.gson;
 }

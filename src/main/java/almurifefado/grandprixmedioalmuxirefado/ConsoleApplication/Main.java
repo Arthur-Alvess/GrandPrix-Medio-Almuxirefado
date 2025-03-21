@@ -15,6 +15,12 @@ public class Main {
     private static Historico historico = new Historico();
 
     public static void main(String[] args) {
+        userContas.carregarDados();
+        listaFuncionarios.carregarDados();
+        estoque.carregarDados();
+        carrinhoItens.carregarDados();
+        historico.carregarDados();
+
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("\n1. Cadastro");
@@ -33,6 +39,11 @@ public class Main {
                     login(scanner);
                     break;
                 case 3:
+                    userContas.salvarDados();
+                    listaFuncionarios.salvarDados();
+                    estoque.salvarDados();
+                    carrinhoItens.salvarDados();
+                    historico.salvarDados();
                     System.exit(0);
                     break;
                 default:

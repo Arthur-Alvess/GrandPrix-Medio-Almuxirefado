@@ -4,10 +4,10 @@ public class CPF {
     private String cpf;
 
     public CPF(String cpf) {
-        if (isCpfValid(cpf)) {
+        if (isValidCPF(cpf)) {
             this.cpf = cpf;
         } else {
-            throw new IllegalArgumentException("CPF inválido.");
+            this.cpf = null;
         }
     }
 
@@ -15,7 +15,11 @@ public class CPF {
         return cpf;
     }
 
-    public boolean isCpfValid(String cpf) {
+    public boolean isCpfValid() {
+        return cpf != null;
+    }
+
+    public static boolean isValidCPF(String cpf) {
         if (cpf == null || cpf.length() != 11 || cpf.matches("(\\d)\\1{10}")) {
             return false;
         }
@@ -27,7 +31,7 @@ public class CPF {
         return cpf.equals(cpfSemDigitos + primeiroDigito + segundoDigito);
     }
 
-    private int calcularDigito(String base, int peso) {
+    private static int calcularDigito(String base, int peso) {
         int soma = 0;
         for (int i = 0; i < base.length(); i++) {
             soma += Integer.parseInt(String.valueOf(base.charAt(i))) * (peso - i);
@@ -37,20 +41,14 @@ public class CPF {
     }
 
     public String formatarCPF() {
+        if (cpf == null) {
+            return "CPF inválido";
+        }
         return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
     }
 
     @Override
     public String toString() {
         return formatarCPF();
-    }
-
-    public static boolean isValidCPF(String cpf) {
-        try {
-            CPF c = new CPF(cpf);
-            return true;
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
     }
 }
